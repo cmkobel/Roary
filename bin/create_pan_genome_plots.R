@@ -33,13 +33,13 @@ genes = data.frame( genes_to_genomes = c(conserved,total),
                     genomes = c(c(1:length(conserved)),c(1:length(conserved))),
                     Key = c(rep("Conserved genes",length(conserved)), rep("Total genes",length(total))) )
                     
-ggplot(data = genes, aes(x = genomes, y = genes_to_genomes, group = Key, linetype=Key)) +geom_line()+
+plot_1 = ggplot(data = genes, aes(x = genomes, y = genes_to_genomes, group = Key, linetype=Key)) +geom_line()+
 theme_classic() +
 ylim(c(1,max(total)))+
 xlim(c(1,length(total)))+
 xlab("No. of genomes") +
-ylab("No. of genes")+ theme_bw(base_size = 16) +  theme(legend.justification=c(0,1),legend.position=c(0,1))+
-ggsave(filename="conserved_vs_total_genes.png", scale=1)
+ylab("No. of genes")+ theme_bw(base_size = 16) +  theme(legend.justification=c(0,1),legend.position=c(0,1))
+ggsave(filename="conserved_vs_total_genes.png", plot = plot_1, scale=1)
 
 ######################
 
@@ -50,10 +50,11 @@ genes = data.frame( genes_to_genomes = c(unique_genes,new_genes),
                     genomes = c(c(1:length(unique_genes)),c(1:length(unique_genes))),
                     Key = c(rep("Unique genes",length(unique_genes)), rep("New genes",length(new_genes))) )
                     
-ggplot(data = genes, aes(x = genomes, y = genes_to_genomes, group = Key, linetype=Key)) +geom_line()+
+plot_2 = ggplot(data = genes, aes(x = genomes, y = genes_to_genomes, group = Key, linetype=Key)) +geom_line()+
 theme_classic() +
 ylim(c(1,max(unique_genes)))+
 xlim(c(1,length(unique_genes)))+
 xlab("No. of genomes") +
-ylab("No. of genes")+ theme_bw(base_size = 16) +  theme(legend.justification=c(1,1),legend.position=c(1,1))+
-ggsave(filename="unique_vs_new_genes.png", scale=1)
+ylab("No. of genes")+ theme_bw(base_size = 16) +  theme(legend.justification=c(1,1),legend.position=c(1,1))
+
+ggsave(filename="unique_vs_new_genes.png", plot = plot_2, scale=1)
